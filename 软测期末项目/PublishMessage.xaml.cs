@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Timeline.entity;
 using Timeline.Interface;
 using Timeline.server;
+using 软测期末项目.server;
 
 namespace 软测期末项目
 {
@@ -22,8 +23,9 @@ namespace 软测期末项目
     /// </summary>
     public partial class PublishMessage : Window
     {
-        private observer user;
-        private userserver userserver;
+        private User user;
+        private UserDao userDao;
+        private MessageDao messageDao;
         private Message news;
         private string Imageurl;
         private string rootURL="";
@@ -32,7 +34,8 @@ namespace 软测期末项目
         public PublishMessage(User user)
         {
             this.user = user;
-            userserver=new userserver();
+            userDao=new IUserDao();
+            messageDao=new IMessageDao();
             InitializeComponent();
         }
 
@@ -48,7 +51,7 @@ namespace 软测期末项目
             DateTime now = DateTime.Now;
             string nowtime = now.GetDateTimeFormats('f')[0].ToString();
             news =new Message(message,Imageurl,nowtime,user);
-            userserver.publishMessage(news);
+            messageDao.publishMessage(news);
         }
 
         private void choosePath(object sender, RoutedEventArgs e)

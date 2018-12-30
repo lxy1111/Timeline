@@ -9,46 +9,31 @@ using Timeline.server;
 
 namespace Timeline.entity
 {
-   public  class User  : observer
+   public  class User 
     {
-        private string username;
-        private string userpassword;
+        private string userName;
+        private string userPassword;
 
       
       
         public  User(string username,string password)
         {
-            this.username = username;
-            this.userpassword = password;
+            this.userName = username;
+            this.userPassword = password;
         }
 
-      public  string getobserverusername()
+      public  string getUserName()
       {
-          return username;
+          return userName;
       }
 
-        public string getobserverpassword()
+        public string getUserPassword()
         {
-            return userpassword;
+            return userPassword;
         }
 
-        public void setobserverusername(string username)
-        {
-            this.username = username;
-        }
-
-        public void setobserverpassword(string password)
-        {
-            this.userpassword = password;
-        }
-
-   
-        public void update()
-        {
-           
-        }
-
-
+    
+  
 
     }
 }

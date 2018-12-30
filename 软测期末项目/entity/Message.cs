@@ -13,9 +13,9 @@ namespace Timeline.entity
         private string content;
         private string ImageURL;
         private string posttime;
-        private observer user;
+        private User user;
 
-        public Message(string content, string ImageURL,string posttime,observer user)
+        public Message(string content, string ImageURL,string posttime,User user)
         {
             this.content = content;
             this.ImageURL = ImageURL;
@@ -53,12 +53,12 @@ namespace Timeline.entity
             this.ImageURL = ImageURL;
         }
 
-        public observer getUser()
+        public User getUser()
         {
             return user;
         }
 
-        public void setUser(observer user)
+        public void setUser(User user)
         {
             this.user = user;
         }

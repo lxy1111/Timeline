@@ -23,13 +23,13 @@ namespace Timeline
     public partial class login : Window
     {
         private User user;
-        private userserver server;
+        private UserDao userDao;
         private string username;
         private string userpassword;
 
         public login()
         {
-            server = new userserver();
+            userDao= new IUserDao();
             InitializeComponent();
         }
 
@@ -75,7 +75,7 @@ namespace Timeline
                 return false;
             }
             user = new User(username, password);
-            if (server.checklogin(user))
+            if (userDao.checkLogin(user))
             {
                 MainWindow mainWindow = new MainWindow(user);
                 mainWindow.Show();

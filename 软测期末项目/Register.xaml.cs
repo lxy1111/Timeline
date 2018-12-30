@@ -26,11 +26,11 @@ namespace Timeline
         private User user;
         private string username;
         private string userpassword;
-        private userserver server;
+        private UserDao userDao;
 
         public Register()
         {
-            server=new userserver();
+            userDao=new IUserDao();
          
             InitializeComponent();
         }
@@ -71,12 +71,12 @@ namespace Timeline
                 return;
             }
             user = new User(username, userpassword);
-            if (server.checkRegister(user))
+            if (userDao.checkRegister(user))
             {
                 MessageBox.Show("该用户已存在");
                 return;
             }
-            server.registerobserver(user);
+            userDao.registerUser(user);
         }
 
         private void returntologin(object sender, RoutedEventArgs e)

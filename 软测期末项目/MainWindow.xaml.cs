@@ -13,9 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Timeline.entity;
+using Timeline.Interface;
 using Timeline.server;
 using 软测期末项目;
 using 软测期末项目.entity;
+using 软测期末项目.server;
 
 namespace Timeline
 {
@@ -26,7 +28,8 @@ namespace Timeline
     {
         private User user;
         private List<Message> newsList=new List<Message>();
-        private userserver server;
+        private UserDao userDao;
+        private MessageDao messageDao;
         private List<MessageInfo> messageInfos = new List<MessageInfo>();
         private int clicktime;
         public MainWindow(User user)
@@ -34,7 +37,8 @@ namespace Timeline
             clicktime = 0;
             InitializeComponent();
             this.user = user;
-            server = new userserver();
+            userDao = new IUserDao();
+            messageDao=new IMessageDao();
             newsDataBinding();
         
         }
@@ -42,7 +46,7 @@ namespace Timeline
         public void newsDataBinding()
         {
             newsList.Clear();
-            newsList = server.getAllNews();
+            newsList = messageDao.getAllNews();
             messageInfos.Clear();
             for (int i = newsList.Count-1; i >=0&&i>=newsList.Count-3*clicktime-3; i--)
             {
@@ -50,7 +54,7 @@ namespace Timeline
                 {
                     content = newsList[i].getContent(),
                     ImageURL = newsList[i].getImageURL(),
-                     username = newsList[i].getUser().getobserverusername(),
+                     username = newsList[i].getUser().getUserName(),
                    posttime = newsList[i].getPosttime()
                 };
                 messageInfos.Add(messageInfo);

@@ -2,9 +2,13 @@
 using Timeline.server;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Castle.Core.Logging;
+using Moq;  
+using MySql.Data.MySqlClient;
 using Timeline.entity;
 
 namespace Timeline.server.Tests
@@ -13,14 +17,15 @@ namespace Timeline.server.Tests
     public class userserverTests
     {
         private userserver server = new userserver();
+        private Mock<MySqlConnection> connection=new Mock<MySqlConnection>();
+        private Mock<MySqlCommand> mysqlCommand=new Mock<MySqlCommand>();
 
         [TestMethod()]
         public void checkRegisterTest()
         {
+
             User user = new User("lxy1", "12345");
             User user2 = new User("lxy2", "111");
-            Assert.AreEqual(server.checkRegister(user), true);
-            Assert.AreEqual(server.checkRegister(user2), false);
         }
 
         [TestMethod()]
@@ -35,11 +40,12 @@ namespace Timeline.server.Tests
         [TestMethod()]
         public void registerobserverTest()
         {
-           User user1=new User("lxy","111");
-           Assert.AreEqual(server.registerobserver(user1),true);
+            mysqlCommand.Setup(p => p.Connection).Returns();
+
+            User user1 = new User("lxy", "111");
+            Assert.AreEqual(server.registerobserver(user1), true);
         }
 
-
-
+    
     }
 }
