@@ -84,7 +84,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegisterTests.cs" />
     <Compile Include="server\userserverTests.cs" />
   </ItemGroup>
   <ItemGroup>

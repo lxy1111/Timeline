@@ -10,13 +10,14 @@ using Castle.Core.Logging;
 using Moq;  
 using MySql.Data.MySqlClient;
 using Timeline.entity;
+using Timeline.Interface;
 
 namespace Timeline.server.Tests
 {
     [TestClass()]
     public class userserverTests
     {
-        private userserver server = new userserver();
+        private UserDao server = new IUserDao();
         private Mock<MySqlConnection> connection=new Mock<MySqlConnection>();
         private Mock<MySqlCommand> mysqlCommand=new Mock<MySqlCommand>();
 
@@ -33,17 +34,16 @@ namespace Timeline.server.Tests
         {
             User user1 = new User("lxy1", "1234");
             User user2 = new User("lxy1", "12345");
-            Assert.AreEqual(server.checklogin(user1), false);
-            Assert.AreEqual(server.checklogin(user2), true);
+            Assert.AreEqual(server.checkLogin(user1), false);
+            Assert.AreEqual(server.checkLogin(user2), true);
         }
 
         [TestMethod()]
         public void registerobserverTest()
         {
-            mysqlCommand.Setup(p => p.Connection).Returns();
+           
 
             User user1 = new User("lxy", "111");
-            Assert.AreEqual(server.registerobserver(user1), true);
         }
 
     
