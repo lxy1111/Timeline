@@ -11,29 +11,13 @@ namespace Timeline.entity
 {
    public  class User 
     {
-        private string userName;
-        private string userPassword;
-
-      
+        public string UserName { get; }
+        public string UserPassword { get; }
       
         public  User(string username,string password)
         {
-            this.userName = username;
-            this.userPassword = password;
+            this.UserName = username;
+            this.UserPassword = password;
         }
-
-      public  string getUserName()
-      {
-          return userName;
-      }
-
-        public string getUserPassword()
-        {
-            return userPassword;
-        }
-
-    
-  
-
     }
 }

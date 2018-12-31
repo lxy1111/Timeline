@@ -8,9 +8,9 @@ using Timeline.entity;
 
 namespace Timeline.Interface
 {
-    public interface MessageDao
+    public interface IMessageDao
     {
-        List<Message> getAllNews();
-        bool publishMessage(Message message);
+        List<Message> GetAllNews();
+        bool PublishMessage(Message message);
     }
 }

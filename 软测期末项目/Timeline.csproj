@@ -83,8 +83,8 @@
     </ApplicationDefinition>
     <Compile Include="entity\Message.cs" />
     <Compile Include="entity\MessageInfo.cs" />
-    <Compile Include="Interface\MessageDao.cs" />
-    <Compile Include="Interface\UserDao.cs" />
+    <Compile Include="Interface\IMessageDao.cs" />
+    <Compile Include="Interface\IUserDao.cs" />
     <Compile Include="PublishMessage.xaml.cs">
       <DependentUpon>PublishMessage.xaml</DependentUpon>
     </Compile>
@@ -93,8 +93,8 @@
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
     <Compile Include="entity\User.cs" />
-    <Compile Include="server\IMessageDao.cs" />
-    <Compile Include="server\IUserDao.cs" />
+    <Compile Include="server\MessageDao.cs" />
+    <Compile Include="server\UserDao.cs" />
     <Page Include="login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
