@@ -24,8 +24,8 @@ namespace 软测期末项目
     public partial class PublishMessage : Window
     {
         private User user;
-        private UserDao userDao;
-        private MessageDao messageDao;
+        private IUserDao userDao;
+        private IMessageDao messageDao;
         private Message news;
         private string Imageurl;
         private string rootURL="";
@@ -34,8 +34,8 @@ namespace 软测期末项目
         public PublishMessage(User user)
         {
             this.user = user;
-            userDao=new IUserDao();
-            messageDao=new IMessageDao();
+            userDao=new UserDao();
+            messageDao=new MessageDao();
             InitializeComponent();
         }
 
@@ -51,7 +51,7 @@ namespace 软测期末项目
             DateTime now = DateTime.Now;
             string nowtime = now.GetDateTimeFormats('f')[0].ToString();
             news =new Message(message,Imageurl,nowtime,user);
-            messageDao.publishMessage(news);
+            messageDao.PublishMessage(news);
         }
 
         private void choosePath(object sender, RoutedEventArgs e)

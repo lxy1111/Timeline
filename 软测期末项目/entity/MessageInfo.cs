@@ -9,9 +9,9 @@ namespace 软测期末项目.entity
 {
    public class MessageInfo
     {
-        public string content { get; set; }
-        public string ImageURL { get; set; }
-        public string username { get; set; }
-        public string posttime { get; set; }
+        public string Content { get; set; }
+        public string ImageUrl { get; set; }
+        public string Username { get; set; }
+        public string PostTime { get; set; }
     }
 }

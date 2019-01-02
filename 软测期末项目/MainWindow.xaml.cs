@@ -28,8 +28,8 @@ namespace Timeline
     {
         private User user;
         private List<Message> newsList=new List<Message>();
-        private UserDao userDao;
-        private MessageDao messageDao;
+        private IUserDao userDao;
+        private IMessageDao messageDao;
         private List<MessageInfo> messageInfos = new List<MessageInfo>();
         private int clicktime;
         public MainWindow(User user)
@@ -37,8 +37,8 @@ namespace Timeline
             clicktime = 0;
             InitializeComponent();
             this.user = user;
-            userDao = new IUserDao();
-            messageDao=new IMessageDao();
+            userDao = new UserDao();
+            messageDao=new MessageDao();
             newsDataBinding();
         
         }
@@ -46,16 +46,16 @@ namespace Timeline
         public void newsDataBinding()
         {
             newsList.Clear();
-            newsList = messageDao.getAllNews();
+            newsList = messageDao.GetAllNews();
             messageInfos.Clear();
             for (int i = newsList.Count-1; i >=0&&i>=newsList.Count-3*clicktime-3; i--)
             {
                 var messageInfo = new MessageInfo()
                 {
-                    content = newsList[i].getContent(),
-                    ImageURL = newsList[i].getImageURL(),
-                     username = newsList[i].getUser().getUserName(),
-                   posttime = newsList[i].getPosttime()
+                    Content = newsList[i].getContent(),
+                    ImageUrl = newsList[i].getImageURL(),
+                     Username = newsList[i].getUser().getUserName(),
+                   PostTime = newsList[i].getPosttime()
                 };
                 messageInfos.Add(messageInfo);
             }

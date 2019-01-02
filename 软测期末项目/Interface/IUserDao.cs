@@ -8,11 +8,11 @@ using Timeline.Interface;
 
 namespace Timeline.Interface
 {
-    public interface UserDao
+    public interface IUserDao
     {
-        bool checkRegister(User user);
-         bool checkLogin(User user);
-        void registerUser(User user);
+        bool CheckRegister(User user);
+         bool CheckLogin(User user);
+        void RegisterUser(User user);
      
     }
 }
