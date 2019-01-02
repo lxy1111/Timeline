@@ -36,6 +36,9 @@ namespace Timeline.server.Tests
             mockDb.Setup(d => d.CreateParameter("USER_NAME", user.UserName)).Returns(theParameter);
             mockDb.Setup(d => d.ExecuteScalar(UserDao.CheckRegisterSql, theParameter)).Returns(true);
             server.CheckRegister(user);
+            mockDb.VerifyNoOtherCalls();
         }
+        
+        
     }
 }

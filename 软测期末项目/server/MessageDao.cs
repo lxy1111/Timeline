@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace 软测期末项目.server
     public class MessageDao : IMessageDao
     {
         private IDatabase db;
+        internal const string SelectSql = "select * from news,users where news.author=users.username";
 
         public MessageDao(IDatabase db)
         {
@@ -23,23 +25,25 @@ namespace 软测期末项目.server
         public List<Message> GetAllNews()
         {
             string sql = "select * from news,users where news.author=users.username";
-            return db.ExecuteReader(sql, rs =>
-            {
-                var newsList = new List<Message>();
-                while (rs.Read())
-                {
-                    var message = rs["content"] as string;
-                    var imageUrl = rs["ImageURL"] as string;
-                    var username = rs["author"] as string;
-                    var password = rs["password"] as string;
-                    var posttime = rs["posttime"] as string;
-                    var user = new User(username, password);
-                    var news = new Message(message, imageUrl, posttime, user);
-                    newsList.Add(news);
-                }
+            return db.ExecuteReader(sql, this.LoadMessages);
+        }
 
-                return newsList;
-            });
+        internal List<Message> LoadMessages(IDataReader reader)
+        {
+            var newsList = new List<Message>();
+            while (reader.Read())
+            {
+                var message = reader["content"] as string;
+                var imageUrl = reader["ImageURL"] as string;
+                var username = reader["author"] as string;
+                var password = reader["password"] as string;
+                var posttime = reader["posttime"] as string;
+                var user = new User(username, password);
+                var news = new Message(message, imageUrl, posttime, user);
+                newsList.Add(news);
+            }
+
+            return newsList;
         }
 
         public bool PublishMessage(Message message)
